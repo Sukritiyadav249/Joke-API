@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #content{
+            background-color: aquamarine;
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <button id="btn">Click Here</button>
+        <div id="div"></div>
+    </div>
+
+    <script>
+        let btn = document.getElementById("btn");
+        let div = document.getElementById("div")
+        let c = btn.addEventListener("click", function(){
+            fetch("https://official-joke-api.appspot.com/random_joke")
+            .then(response => response.json())
+            .then(data => {
+                div.innerHTML = `
+               <p>${data.setup}</p>
+               <p>${data.punchline}</p>
+               <p>${data.type}</p>
+           `
+            })
+
+            .catch(error => console.log("error", error))
+        })
+    </script>
+</body>
+</html>
